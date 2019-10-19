@@ -1,5 +1,6 @@
 import os
 import json
+import time
 
 class clientApp(object):
 
@@ -12,14 +13,14 @@ class clientApp(object):
         hostname = open('hostname', 'r')
 
         for text in hostname:
-            return text
+            return text.rstrip()
 
 
     def collectSSHLog(self):
         os.system('cat /var/log/auth.log | grep Accepted > ssh-attempt-log.txt')
         logAttempt = open('ssh-attempt-log.txt', 'r')
        
-        actualAttempt = 0
+        actualAttempt = 0  
         for text in logAttempt:
             actualAttempt += 1
        
@@ -50,5 +51,12 @@ class clientApp(object):
 if __name__ == "__main__":
 
     previoustAttempt = 0
-    clientAppClass = clientApp(previoustAttempt,0)  
+    clientAppClass = clientApp(previoustAttempt)
+    hostname  = clientAppClass.collectHostname()
+    while 1 == 1:
+        sshAttempt = clientAppClass.collectSSHLog()
+        if clientAppClass.checkSshAttempt(sshAttempt):
+            clientAppClass.makeJsonFile(hostname, sshAttempt)
+            clientAppClass.sendToAlphaServer()
+        time.sleep(1)
     
