@@ -19,14 +19,14 @@ class clientApp(object):
         os.system(commandCLI)
         logAttempt = open('ssh-attempt-log.txt', 'r')
        
-       actualAttempt = 0
+        actualAttempt = 0
         for text in logAttempt:
             actualttempt += 1
        
         return actualAttempt
 
 
-    def countSshAttempt(self, actualAttempt):
+    def checkSshAttempt(self, actualAttempt):
         
         if actualAttempt == self.previoustAttempt:
             return False
