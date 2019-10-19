@@ -2,11 +2,11 @@ import pytest
 import clientApp
 import os
 
-clientAppClass = clientApp.clientApp('0', '')
+clientAppClass = clientApp.clientApp('0')
 
 def test_hostname():
     result = clientAppClass.collectHostname()
-    assert str(result) == "mirdsm-ThinkPad-X220\n"
+    assert str(result) == "mirdsm-ThinkPad-X220"
 
 
 def test_collectSSHLog():
@@ -24,3 +24,8 @@ def test_checkSshAttempt():
     assert clientAppClass.checkSshAttempt(10) == 10
 
 
+def test_makeJsonFile():
+    hostname = "mirdan"
+    loginAttempt = "66"
+    expected = {"nodeName":"mirdan", "logInAttempt":"66"}
+    assert clientAppClass.makeJsonFile(hostname, loginAttempt) == expected
