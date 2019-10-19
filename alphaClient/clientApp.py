@@ -1,11 +1,11 @@
 import os
+import json
 
 class clientApp(object):
 
-    def __init__(self, previoustAttempt, commandCLI):
+    def __init__(self, previoustAttempt):
         self.previoustAttempt = previoustAttempt
-        self.commandCLI = commandCLI
-    
+
 
     def collectHostname(self):
         os.system('hostname > hostname')
@@ -33,6 +33,14 @@ class clientApp(object):
 
         self.previoustAttempt = actualAttempt
         return actualAttempt
+
+    def makeJsonFile(self, hostname, attempt ):
+        jsonResult = {"nodeName":hostname, "logInAttempt":attempt}
+        json_file = open('logFinalInfo.json', 'w+')
+        json_file.write(json.dumps(jsonResult))
+        json_file = open('logFinalInfo.json', 'r')
+        print jsonResult
+        return jsonResult
 
 
     def sendToAlphaServer(self):
