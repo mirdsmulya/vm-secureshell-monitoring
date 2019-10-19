@@ -1,0 +1,6 @@
+ssh-attempt-log.txt
+alphaClient/.cache/
+alphaClient/__pycache__/
+alphaClient/clientApp.pyc
+alphaClient/hostname
+.cache/
