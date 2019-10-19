@@ -6,21 +6,28 @@ class clientApp(object):
         self.commandCLI = commandCLI
     
 
-    def collectHostname(self, previoustAttempt):
-        pass
+    def collectHostname(self):
+        os.system('cat hostname > hostname')
+        hostname = open('hostname', 'r')
+
+        for text in hostname:
+            pass
+        return text
         
 
     def collectSSHLog(self):
         os.system(commandCLI)
         logAttempt = open('ssh-attempt-log.txt', 'r')
-        return logAttempt
-
-
-    def countSshAttempt(self, logAttempt):
-        actualAttempt = 0
+       
+       actualAttempt = 0
         for text in logAttempt:
             actualttempt += 1
+       
+        return actualAttempt
 
+
+    def countSshAttempt(self, actualAttempt):
+        
         if actualAttempt == self.previoustAttempt:
             return False
 
