@@ -29,7 +29,10 @@ class serverApp(object):
         resultLen = len(result)
         for i in range(0, resultLen):
             resultList = result[i]
-            print "> %r node had %r attempts" % (resultList['nodeName'], resultList['logInAttempt'])
+            nodeName = resultList['nodeName'].encode("utf-8")
+            logInAttempt = resultList['logInAttempt'].encode("utf-8")
+            print "> %r node had %r attempts" % (nodeName, logInAttempt)
+        print "--------------------------------"
 
 
 if __name__ == '__main__':
