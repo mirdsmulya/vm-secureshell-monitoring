@@ -1,4 +1,10 @@
-all: setup exec jump clean
+all: test-env setup exec jump clean
+
+test-env: SHELL:=/bin/bash
+test-env:
+	@/bin/echo -e "\e[1;32mTesting Environment...\e[0m"
+	@. test.sh
+
 
 setup:
 	@/bin/echo -e "\e[1;32mSetting up environment...\e[0m"
@@ -21,4 +27,4 @@ jump:
 	vagrant ssh alphaServer
 	cd /vagrant/alphaServer ; sudo python serverApp.py
 clean:
-	rm *.log *.complete
+	rm *.log *.complete *.txt *.json
