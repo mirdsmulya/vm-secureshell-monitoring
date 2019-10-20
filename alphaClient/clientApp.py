@@ -55,7 +55,6 @@ class clientApp(object):
 
         jsonFileNameOnDestination = hostname + '.json'
         jsonFileName = hostname + ".json"
-
         #json file transfer via sftp
         sftp = client.open_sftp()
         sftp.put(jsonFileName,jsonFileNameOnDestination)
