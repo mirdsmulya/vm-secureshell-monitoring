@@ -1,6 +1,10 @@
-ssh-attempt-log.txt
-alphaClient/.cache/
-alphaClient/__pycache__/
-alphaClient/clientApp.pyc
-alphaClient/hostname
+*.txt
+*/.cache/
+*/hostname
 .cache/
+*.json
+*.swp
+*/__pycache__/
+*.pyc
+hostname
+
