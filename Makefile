@@ -1,4 +1,4 @@
-all: clean test-env setup exec jump 
+all: clean test-env setup exec jump post-clean
 
 test-env: SHELL:=/bin/bash
 test-env:
@@ -28,12 +28,15 @@ exec:
 	@vagrant ssh alphaClient-1 -c 'cd /vagrant ; sudo python alphaClient/clientApp.py' &
 	@vagrant ssh alphaClient-2 -c 'cd /vagrant ; sudo python alphaClient/clientApp.py' &
 
+
 jump:
 	@echo " "
 	@/bin/echo -e "\e[1;32mJumping to alphaServer...\e[0m"
 	vagrant ssh alphaServer
-	#cd /vagrant ; sudo python alphaServer/serverApp.py
 
 clean:
 	@/bin/echo -e "\e[1;32mClearing Environment...\e[0m"
 	@rm *.log *.complete *.txt *.json alphaServer/*.json alphaClient/*.json &
+
+post-clean:
+	@rm *.log *.complete *.txt hostname &
