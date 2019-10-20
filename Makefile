@@ -1,3 +1,5 @@
+full: prepare all
+
 all: clean test-env setup exec jump post-clean
 
 test-env: SHELL:=/bin/bash
@@ -5,9 +7,16 @@ test-env:
 	@/bin/echo -e "\e[1;32mTesting Environment...\e[0m"
 	@. test.sh
 
+prepare:
+	@/bin/echo -e "\e[1;32mInstalling vagrant and vbox..\e[0m"
+	yes | sudo apt-get install virtualbox
+	yes | wget https://releases.hashicorp.com/vagrant/2.0.3/vagrant_2.0.3_x86_64.deb
+	yes | sudo dpkg -i vagrant_2.0.3_x86_64.deb
+	
 
 setup:
 	@/bin/echo -e "\e[1;32mSetting up environment...\e[0m"
+	@yes | vagrant plugin install vagrant-vbguest
 	@vagrant up
 
 	@/bin/echo -e "\e[1;32mSetting up alphaServer dependencies.. this will take several minutes\e[0m"
