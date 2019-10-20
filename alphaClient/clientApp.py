@@ -37,7 +37,7 @@ class clientApp(object):
 
     def makeJsonFile(self, hostname, attempt ):
         jsonResult = {"nodeName":hostname, "logInAttempt":attempt}
-        json_file = open('logFinalInfo.json', 'w+')
+        json_file = open(hostname + '.json', 'w+')
         json_file.write(json.dumps(jsonResult))
         json_file = open('logFinalInfo.json', 'r')
         print jsonResult
@@ -45,7 +45,16 @@ class clientApp(object):
 
 
     def sendToAlphaServer(self):
-        pass
+        #prepare connection using ssh paramiko
+        client = paramiko.SSHClient()
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        #client.connect('10.0.0.10', username='alphaServer', password='a')
+	    client.connect('10.0.0.10', username='vagrant', password='vagrant')
+
+        #json file transfer vis sftp
+        sftp = client.open_sftp()
+        sftp.put('logFinalInfo.json','logFinalInfo.json')
+        sftp.close()
 
 
 if __name__ == "__main__":
