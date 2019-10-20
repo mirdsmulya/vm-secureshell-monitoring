@@ -14,7 +14,7 @@ def test_collectSSHLog():
     logAttempt = open('ssh-attempt-log.txt', 'r')
     actualAttempt = 0
     for text in logAttempt:
-        actualttempt += 1
+        actualAttempt += 1
 
     assert clientAppClass.collectSSHLog() == actualAttempt
 
@@ -29,3 +29,4 @@ def test_makeJsonFile():
     loginAttempt = "66"
     expected = {"nodeName":"mirdan", "logInAttempt":"66"}
     assert clientAppClass.makeJsonFile(hostname, loginAttempt) == expected
+    os.system('rm mirdan.json')
