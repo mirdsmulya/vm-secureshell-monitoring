@@ -38,9 +38,10 @@ class clientApp(object):
 
     def makeJsonFile(self, hostname, attempt ):
         jsonResult = {"nodeName":hostname, "logInAttempt":attempt}
-        json_file = open('logFinalInfo.json', 'w+')
+        jsonFileName = hostname + ".json"
+        json_file = open(jsonFileName, 'w+')
         json_file.write(json.dumps(jsonResult))
-        json_file = open('logFinalInfo.json', 'r')
+        json_file = open(jsonFileName, 'r')
         print jsonResult
         return jsonResult
 
@@ -53,9 +54,11 @@ class clientApp(object):
         client.connect('10.0.0.10', username='vagrant', password='vagrant')
 
         jsonFileNameOnDestination = hostname + '.json'
+        jsonFileName = hostname + ".json"
+
         #json file transfer via sftp
         sftp = client.open_sftp()
-        sftp.put('logFinalInfo.json',jsonFileNameOnDestination)
+        sftp.put(jsonFileName,jsonFileNameOnDestination)
         sftp.close()
 
 
