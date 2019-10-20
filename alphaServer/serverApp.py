@@ -30,10 +30,10 @@ class serverApp(object):
         for i in range(0, resultLen):
             resultList = result[i]
             nodeName = resultList['nodeName'].encode("utf-8")
-            logInAttempt = resultList['logInAttempt'].encode("utf-8")
+            logInAttempt = str(resultList['logInAttempt'])
             print "> %r node had %r attempts" % (nodeName, logInAttempt)
         print "--------------------------------"
-
+        return nodeName + logInAttempt
 
 if __name__ == '__main__':
 
