@@ -18,7 +18,7 @@ class clientApp(object):
 
 
     def collectSSHLog(self):
-        os.system('cat /var/log/auth.log | grep Accepted > ssh-attempt-log.txt')
+        os.system('sudo cat /var/log/auth.log | grep Accepted > ssh-attempt-log.txt')
         logAttempt = open('ssh-attempt-log.txt', 'r')
        
         actualAttempt = 0  
@@ -68,6 +68,6 @@ if __name__ == "__main__":
         sshAttempt = clientAppClass.collectSSHLog()
         if clientAppClass.checkSshAttempt(sshAttempt):
             clientAppClass.makeJsonFile(hostname, sshAttempt)
-            clientAppClass.sendToAlphaServer()
+            clientAppClass.sendToAlphaServer(hostname)
         time.sleep(1)
     
