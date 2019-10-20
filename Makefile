@@ -17,14 +17,15 @@ setup:
 
 
 exec:
-	@/bin/echo -e "\e[1;32mExecute the application...\e[0m"
-	#vagrant ssh alphaServer -c 'cd /vagrant ; python serverApp.py' &
-	vagrant ssh alphaClient-1 -c 'cd /vagrant/alphaClient ; sudo python clientApp.py' &
-	vagrant ssh alphaClient-2 -c 'cd /vagrant/alphaClient ; sudo python clientApp.py'
+	@/bin/echo -e "\e[1;32m ***** Execute the application on alphaClient-1 and alphaClient-2 *****\e[0m"
+	@#vagrant ssh alphaServer -c 'cd /vagrant ; python serverApp.py' &
+	@vagrant ssh alphaClient-1 -c 'cd /vagrant ; sudo python alphaClient/clientApp.py' &
+	@vagrant ssh alphaClient-2 -c 'cd /vagrant ; sudo python alphaClient/clientApp.py' &
 
 jump:
 	@/bin/echo -e "\e[1;32mJumping to alphaServer...\e[0m"
 	vagrant ssh alphaServer
-	cd /vagrant/alphaServer ; sudo python serverApp.py
+	cd /vagrant ; sudo python alphaServer/serverApp.py
+
 clean:
-	rm *.log *.complete *.txt *.json
+	rm *.log *.complete *.txt *.json alphaServer/*.json alphaClient/*.json
