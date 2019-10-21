@@ -1,6 +1,6 @@
 full: prepare all
 
-all: clean test-env setup exec jump post-clean
+all: clean setup exec jump post-clean
 
 test-env: SHELL:=/bin/bash
 test-env:
