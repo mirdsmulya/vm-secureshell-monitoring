@@ -25,7 +25,6 @@ class clientApp(object):
         actualAttempt = 0  
         for text in logAttempt:
             actualAttempt += 1
-        os.system('sudo rm ssh-attempt-log.txt')
         return actualAttempt
 
 
