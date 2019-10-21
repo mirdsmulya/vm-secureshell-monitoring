@@ -4,6 +4,8 @@ My solution was built in python2, and it contains 3 VM (nodes) running on vagran
 
 VM AlphaServer simply will monitor and gather report from AlpaClient. The metric that will be monitor is ssh-login-metric. This monitoring report will be display at AlphaServer console.
 
+For code unit testting 
+$ make test-env
 
 # Start the App
 
@@ -11,6 +13,7 @@ If your system already has vagrant version 2.0.3 above
 
 Todo
 $ make all
+
 
 If vagrant 2.0.3 or above is not ready yet :
 
